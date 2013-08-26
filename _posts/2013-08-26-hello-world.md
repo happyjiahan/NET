@@ -1,12 +1,14 @@
 ---
-layout:		post
-title: 		我的Blog今天开通了
-categories:	日志
+layout:     post
+title:      我为什么写博客？
+category: blog
+description: 写博客这个这么古老的行为，还有必要拿出来说吗，我看有。
+
 ---
 
-#hello world
-========
+## 世界这么乱，装纯给谁看
 
-this is my first blog.
+写博客这个不知道几个“互联网世纪”前的东西，现在还有必要拿出来说吗？不想用太多的理论去说这个命题，先看看两个最近对我影响比较大的两个博客：
 
-**hello world**
+* [Steve Losh][]
+* [Derek Sivers][]
