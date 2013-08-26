@@ -1,12 +1,6 @@
 ---
 layout:     post
-title:      我为什么写博客？
-category: blog
-
+title:     	我的故事 
+category:  	日志 
 ---
 
-
-#hello world
-
-
-##hellokigg
