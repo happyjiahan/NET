@@ -1,13 +1,13 @@
 markdown: rdiscount
 permalink: /:title/
 url: http://codingcoder.com
-name: Yonsm.NET
-author: Yonsm
+name: codingcoder blog
+author: happyjiahan
 qq: 546662815
 email: happyjiahan@gmail.com
 duoshuo: happyjiahan
-weibo: 1885061391
-github: Yonsm
+weibo: 1900599231
+github: happyjiahan
 pygments: true
 safe: true
 paginate: 20
