@@ -59,13 +59,11 @@ UIImage是我们在ios中非常熟悉的数据结构了，用它来存储图片�
 	unsigned char pixel = pixels[(y*((int)whiteImage.size.width))+x];
 	
 对于RGBA值，基本原理和上面的灰度值一样，但是需要注意的一点是，RGBA值需要四个字节来去表示一个像素。
-{% highlight cpp %}
-	
+	{% highlight cpp %}
 	int x = 10;
 	int y = 2;
 	unsigned char pixel = pixels[(y*((int)whiteImage.size.width)*4)+(x*4)];
-	
-{% endhighlight %}
+	{% endhighlight %}
 	
 如果你看到了这里，那就说明你已经能够从UIImage中获取像素信息了，Congratulations!
 但是，最后有一点非常重要的事情你需要注意。你使用完这些方法给你的数据之后，你需要手动的去`free`这些数据，否则就会出现内存泄露。可能有些人会疑惑我为什么把返回值设定为`(unsigned char*)`而不是一个`NSArray`，答案很简单，直接操作`(unsigned char*)`要比操作`NSArray`快很多，而我的方法默认是为那些对操作速度要求很高的同学提供的。
