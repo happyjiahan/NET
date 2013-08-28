@@ -2,7 +2,7 @@
 layout: 	post
 title:		如何从UIImage中获取像素信息
 category:	ios开发
-tages:		ios开发
+tages:		开发
 
 ---
 
