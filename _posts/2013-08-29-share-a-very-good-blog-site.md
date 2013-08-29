@@ -1,6 +1,6 @@
 ---
 layout: 	post
-title:		如何从UIImage中获取像素信息
+title:		推荐一个个人博客
 category:	推荐
 tages:		推荐
 
