@@ -1,0 +1,1 @@
+http://jason.pureconcepts.net/2012/10/updating-svn-mac-os-x/
