@@ -11,3 +11,5 @@ tages:		开发
 +	[使用CocoaPods来做iOS程序的包依赖管理](http://blog.devtang.com/blog/2012/12/02/use-cocoapod-to-manage-ios-lib-dependency/)
 
 +	[Cocoapods的使用](http://blog.csdn.net/xinruiios/article/details/8950885)
+
++	[Introduction to CocoaPods](http://www.raywenderlich.com/12139/introduction-to-cocoapods)
