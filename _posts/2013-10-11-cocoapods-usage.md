@@ -13,3 +13,5 @@ tages:		开发
 +	[Cocoapods的使用](http://blog.csdn.net/xinruiios/article/details/8950885)
 
 +	[Introduction to CocoaPods](http://www.raywenderlich.com/12139/introduction-to-cocoapods)
+
++ 	[CocoaPods进阶：本地包管理](http://www.iwangke.me/2013/04/18/advanced-cocoapods/)
