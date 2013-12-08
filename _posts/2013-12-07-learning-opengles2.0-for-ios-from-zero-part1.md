@@ -78,6 +78,7 @@ OK，Let's coding!
 
 
 {% highlight objc linenos %}
-@interface JHAppDelegate : UIResponder <UIApplicationDelegate, **GLKViewDelegate**>
+@interface JHAppDelegate : UIResponder 
+<UIApplicationDelegate, GLKViewDelegate>
 {% endhighlight %}
 
