@@ -16,13 +16,23 @@ tages:		开发
 
 OK，Let's coding! 
 
-首先，在Xcode5下新建一个**iOS/Application/Empty Application**的工程，工程名为**HelloGLKit_1**
+首先，在Xcode5下新建一个**iOS/Application/Empty Application**的工程，工程名为**HelloGLKit_1**。
 
 <img src="../album/create_empty_project.png" style="width: 500px;" />
 
 我们先运行下，看看到如下图所示的画面。它仅有一个背景色为白色的UIWindow。
 <img src="../album/window_white.png" style="width: 200px; border: 3px #ff0000 dotted;"/>
+代码如下
 
-
+{% highlight objc %}
+	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+	{
+	    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	    // Override point for customization after application launch.
+	    self.window.backgroundColor = [UIColor whiteColor];
+	    [self.window makeKeyAndVisible];
+	    return YES;
+	}
+{% endhighlight %}
 
 
