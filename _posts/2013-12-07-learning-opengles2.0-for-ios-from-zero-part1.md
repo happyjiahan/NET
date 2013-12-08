@@ -24,14 +24,14 @@ OK，Let's coding!
 <img src="../album/window_white.png" style="width: 200px; border: 3px #ff0000 dotted;"/>
 代码如下
 
-``` objectivec
-	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-	{
-	    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	    // Override point for customization after application launch.
-	    self.window.backgroundColor = [UIColor whiteColor];
-	    [self.window makeKeyAndVisible];
-	    return YES;
-	}
+``` objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    return YES;
+}
 ```
 
