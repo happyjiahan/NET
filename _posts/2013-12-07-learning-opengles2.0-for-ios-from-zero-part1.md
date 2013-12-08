@@ -24,7 +24,7 @@ OK，Let's coding!
 <img src="../album/window_white.png" style="width: 200px; border: 3px #ff0000 dotted;"/>
 代码如下
 
-{% highlight objective-c %}
+``` objective-c
 	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 	{
 	    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -33,6 +33,5 @@ OK，Let's coding!
 	    [self.window makeKeyAndVisible];
 	    return YES;
 	}
-{% endhighlight %}
-
+```
 
