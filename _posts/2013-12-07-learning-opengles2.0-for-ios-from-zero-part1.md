@@ -68,4 +68,16 @@ OK，Let's coding!
 {% endhighlight %}
 
 
+{% highlight objc linenos %}
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
+{
+    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+{% endhighlight %}
+
+
+{% highlight objc linenos %}
+@interface JHAppDelegate : UIResponder <UIApplicationDelegate, **GLKViewDelegate**>
+{% endhighlight %}
 
