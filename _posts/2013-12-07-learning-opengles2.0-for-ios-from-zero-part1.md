@@ -48,6 +48,11 @@ OK，Let's coding!
 首先我们需要引入GLKit，`#import <GLKit/GLKit.h>`
 
 {% highlight objc linenos %}
+@interface JHAppDelegate : UIResponder 
+<UIApplicationDelegate, GLKViewDelegate>
+{% endhighlight %}
+
+{% highlight objc linenos %}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -67,6 +72,9 @@ OK，Let's coding!
 }
 {% endhighlight %}
 
+这段代码中我们生成了一个`EAGLContext`, `kEAGLRenderingAPIOpenGLES2`代表我们使用OpenGL ES 2.0版本。然后将这个`context`传入到`GLKView`中，并设置View的`delegate`为`self`。最后把这个View添加都`self.window`上，使其能够加入到应用程序的视图体系中。
+
+由于`self`是`GLKViewDelegate`的代理，所以我们需要实现其代理方法`- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect`，如下：
 
 {% highlight objc linenos %}
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -76,9 +84,11 @@ OK，Let's coding!
 }
 {% endhighlight %}
 
+这里使用了两个gl为前缀的方法，很明显是OpenGL的方法。你可以查看[OpenGL ES 2.0的官方文档](http://www.khronos.org/opengles/sdk/docs/man/)
+简而言之，我们就是首先制定背景色，然后把背景色画到View上去。
 
-{% highlight objc linenos %}
-@interface JHAppDelegate : UIResponder 
-<UIApplicationDelegate, GLKViewDelegate>
-{% endhighlight %}
+OK，我们的第一个任务就算完成了，运行一下，看看是不是已经达到自己想要的效果了呢！
+下面是源代码，需要的可以看看。[HelloGLKit_1.zip](../src/HelloGLKit_1.zip)
+
+
 
