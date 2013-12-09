@@ -9,8 +9,10 @@ tages:		开发
 最近在学习如何在iOS开发中使用OpenGL ES 2.0进行绘图操作，有一些心得和经验，与大家分享。首先说明一点，这篇教程的目标读者是已经对iOS的开发有一些基础，但是对OpenGL ES 2.0没有任何基础，又希望在iOS开发中使用OpenGL ES 2.0的开发者。
 
 首先，强烈推荐一些OpenGL ES 2.0开发的经典书籍，非常感谢作者，给我了很大的帮助，也希望它们能帮到你。
-＋	[iOS_5_by_Tutorials_Second_Edition_1_1.pdf](../books/iOS_5_by_Tutorials_Second_Edition_1_1.pdf)
-+	[Learning OpenGL ES for iOS A Hands-on Guide to Modern 3D Graphics Programming.pdf](../books/Learning OpenGL ES for iOS A Hands-on Guide to Modern 3D Graphics Programming.pdf) 我看过的最好的OpenGL ES for iOS相关的书，没有之一。
+
++	[iOS_5_by_Tutorials_Second_Edition_1_1.pdf](../books/iOS_5_by_Tutorials_Second_Edition_1_1.pdf.zip)
+
++	[Learning OpenGL ES for iOS A Hands-on Guide to Modern 3D Graphics Programming.pdf](../books/Learning OpenGL ES for iOS A Hands-on Guide to Modern 3D Graphics Programming.pdf.zip) 我看过的最好的OpenGL ES for iOS相关的书，没有之一。
 
 这是本系列教程的第一部分，本部分的任务是使用OpenGL把View的背景色填充为红色，达到如下图所示的效果。
 
