@@ -39,7 +39,7 @@ tages:
 }
 {% endhighlight %}
 
-上面的实现很简单，貌似没有什么不妥的，可是，请注意，我们把一个简单的需求的实现放在了两个地方，一个地方去监听通知，一个地方打印Log。当代码很多时，这种一个需求，需要多个地方配合实现的代码会很难读懂。同理，对于objc中非常普遍的Delegate, Notification, KVO都存在同样的问题，所以Block的出现了。Block可以使我们再一个地方完成我们想要的事情，不需要在多个地方跳转着去看代码。
+上面的实现很简单，貌似没有什么不妥的，可是，请注意，我们把一个简单的需求的实现放在了两个地方，一个地方去监听通知，一个地方打印Log。当代码很多时，这种一个需求，需要多个地方配合实现的代码会很难读懂。同理，对于objc中非常普遍的Delegate, Notification, KVO都存在同样的问题，所以Block出现了。Block可以使我们在一个地方完成我们想要的事情，不需要在多个地方跳转着去看代码。
 
 那么，既然我们在学习RAC，让我们看看上述的需求，用RAC的方式可以怎么来实现吧！
 
@@ -84,7 +84,7 @@ tages:
 	
 	@end
 	
-但是，通知又给出了如下的3个通知：
+但是，同时又给出了如下的3个通知：
 
 	UIKIT_EXTERN NSString *const UITextFieldTextDidBeginEditingNotification;
 	UIKIT_EXTERN NSString *const UITextFieldTextDidEndEditingNotification;
