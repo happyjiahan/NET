@@ -42,11 +42,67 @@ tages:
 上面的实现很简单，貌似没有什么不妥的，可是，请注意，我们把一个简单的需求的实现放在了两个地方，一个地方去监听通知，一个地方打印Log。当代码很多时，这种一个需求，需要多个地方配合实现的代码会很难读懂。同理，对于objc中非常普遍的Delegate, Notification, KVO都存在同样的问题，所以Block的出现了。Block可以使我们再一个地方完成我们想要的事情，不需要在多个地方跳转着去看代码。
 
 那么，既然我们在学习RAC，让我们看看上述的需求，用RAC的方式可以怎么来实现吧！
+
 {% highlight objc linenos %}
 [self.textField.rac_textSignal subscribeNext:^(NSString *newText) {
    NSLog(@"text = %@", newText);
 }];
 {% endhighlight %}
+
+就是这么简单，rac_textSignal是RAC扩展的分类，使我们可以方便的使用系统自带的各种控件。相关的内容可以看看[说说ReactiveCocoa 2](http://blog.leezhong.com/ios/2013/12/27/reactivecocoa-2.html), 讲的很好。
+
+可能有的初学RAC的朋友会如下实现，
+
+{% highlight objc linenos %}
+[RACObserve(self.textField, text) subscribeNext:^(NSString *newText) {
+    NSLog(@"text = %@", newText);
+}];
+{% endhighlight %}
+
+但是，好像我们用键盘输入文字时，并没有打出相关的Log啊？这是为什么呢？因为，这样实现只能监听
+
+    self.textField.text = @"xxx";
+    self.textField.text = @"aaaa";
+    
+这样显示对TextField.text进行设值的操作，不能监听通过键盘输入赋值。
+
+大家都知道，UITextField有一个delegate是UITextFieldDelegate，它有如下的代理方法：
+
+	@protocol UITextFieldDelegate <NSObject>
+
+	@optional
+	
+	- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
+	- (void)textFieldDidBeginEditing:(UITextField *)textField;           // became first responder
+	- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;          // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
+	- (void)textFieldDidEndEditing:(UITextField *)textField;             // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
+	
+	- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
+	
+	- (BOOL)textFieldShouldClear:(UITextField *)textField;               // called when clear button pressed. return NO to ignore (no notifications)
+	- (BOOL)textFieldShouldReturn:(UITextField *)textField;              // called when 'return' key pressed. return NO to ignore.
+	
+	@end
+	
+但是，通知又给出了如下的3个通知：
+
+	UIKIT_EXTERN NSString *const UITextFieldTextDidBeginEditingNotification;
+	UIKIT_EXTERN NSString *const UITextFieldTextDidEndEditingNotification;
+	UIKIT_EXTERN NSString *const UITextFieldTextDidChangeNotification;
+
+特别是UITextFieldTextDidChangeNotification，没有相关的回调方法可以实现相同的功能，大家有没有思考过为什么呢？这里的两种方式是否也决定了我们上面讨论的RAC的两个监听TextField.text的方式呢？到目前为止我也不确定，等抽空仔细查查文档，再来把这里补上吧。
+
+如果这时，可恶的产品经理又提出了一个新需求，我们只要打印以字母‘j’开头的，其他的不打印。用RAC的过滤Singal就相当简单了，代码如下，不解释：
+
+	[[RACObserve(self.textField, text) filter:^BOOL(NSString *newText) {
+	    return [newText hasPrefix:@"j"];
+	}] subscribeNext:^(NSString *newText) {
+	    NSLog(@"text = %@", newText);
+	}];
+	
+	
+未完待续....
+
 
 
 
