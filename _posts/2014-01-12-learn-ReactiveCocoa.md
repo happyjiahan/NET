@@ -101,6 +101,17 @@ tages:
 	}];
 	
 	
+我们再来考虑一个需求，就是通常的注册流程中，只有当第一次输入的密码和第二次确认的密码一致时，才会让你点击注册按钮，否则，注册按钮都是不可点的。使用RAC，我们怎么实现这个需求呢？请看代码。
+
+    RAC(self.regButton, enabled) =
+    [RACSignal combineLatest:@[self.pwdTextField.rac_textSignal,
+                               self.confirmPwdTextField.rac_textSignal]
+                      reduce:^id(NSString *pwd, NSString *confirmPwd){
+                          return @([pwd isEqualToString:confirmPwd]);
+                      }];
+非常简洁吧！
+	
+	
 未完待续....
 
 
