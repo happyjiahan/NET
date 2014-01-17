@@ -108,9 +108,58 @@ tages:
                                self.confirmPwdTextField.rac_textSignal]
                       reduce:^id(NSString *pwd, NSString *confirmPwd){
                           return @([pwd isEqualToString:confirmPwd]);
-                      }];
-非常简洁吧！
-	
+                      }];                      
+非常简洁吧！reduce的作用是根据接收到的值，再返回一个新的值，这里是@(YES)和@(NO)，必须是object。
+
+有了RAC，我们对于像UIAlertView这样的Delegate形式的控件，可以使用Block了，我认为这真是太方便了！翠花，给爷上代码！:]
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认要删除该话题吗？"
+                                                    message:nil
+                                                   delegate:nil
+                                          cancelButtonTitle:@"不删除"
+                                          otherButtonTitles:@"删除", nil];
+    @weakify(alert);
+    [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *buttonIndex) {
+        @strongify(alert);
+        NSString *buttonTitle = [alert buttonTitleAtIndex:[buttonIndex integerValue]];
+        if ([buttonTitle isEqualToString:@"删除"]) {
+            NSLog(@"delete, %@", buttonTitle);
+        } else {
+            NSLog(@"not delete, %@", buttonTitle);
+        }
+    }];
+    [alert show];
+这种实现方式，需要特别注意使用ARC时，对传入Block中的变量的内存管理。
+    
+
+或者，也可以这样实现：
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认要删除该话题吗？"
+                                                    message:nil
+                                                   delegate:nil
+                                          cancelButtonTitle:@"不删除"
+                                          otherButtonTitles:@"删除", nil];
+    [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *buttonIndex) {
+        switch ([buttonIndex integerValue]) {
+            case 0:
+            {
+                // do something
+                break;
+            }
+                
+            case 1:
+            {
+                // do something
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }];
+    [alert show];
+    
+
 	
 未完待续....
 
