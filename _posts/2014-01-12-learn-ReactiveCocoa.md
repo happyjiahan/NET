@@ -18,7 +18,7 @@ tages:
 +	[ReactiveCocoa与Functional Reactive Programming](http://blog.leezhong.com/ios/2013/06/19/frp-reactivecocoa.html)
 +	[说说ReactiveCocoa 2](http://blog.leezhong.com/ios/2013/12/27/reactivecocoa-2.html)
 +	[Basic MVVM with ReactiveCocoa](http://cocoasamurai.blogspot.com/2013/03/basic-mvvm-with-reactivecocoa.html)
-
++	[http://twocentstudios.com/blog/2013/04/03/the-making-of-vinylogue/](http://twocentstudios.com/blog/2013/04/03/the-making-of-vinylogue/)
 
 下面，我边写代码，边说说自己对RAC的理解吧。
 
