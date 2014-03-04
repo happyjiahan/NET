@@ -160,6 +160,13 @@ tages:
     [alert show];
     
 
+再比如UIButton，可以这样使用。
+
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) 	{
+        [self fetchPhotos];
+    }];
+
 	
 未完待续....
 
