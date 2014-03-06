@@ -10,7 +10,7 @@ tages:		Nice Album
 
 累了的时候，就打开Nice Album，看看漂亮的风景，看看可爱的狗狗吧！
 
-![](../album/nicealbum_1024x1024.png)
+![](../album/nicealbum_1024X1024.png)
 ![](../album/nicealbum_4.PNG)
 ![](../album/nicealbum_3.PNG)
 ![](../album/nicealbum_2.PNG)
