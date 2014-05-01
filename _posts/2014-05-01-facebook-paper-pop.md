@@ -10,6 +10,7 @@ tages:
 
 几个月之前我们发布了[Paper](https://code.facebook.com/posts/656530327776932/building-paper/)，可以流畅并且优雅的浏览和分享好的故事。今天我们开源了实现Paper应用平滑动画和转场效果的动画引擎Pop。使用动态动画(dynamic animations)而不是传统的静态动画(static animations)，Pop使常见的滑动(scrolling)、弹跳(bouncing)、折叠(unfolding)等效果充满了活力，也使Paper给人一种耳目一新的感觉。
 
+
 ##为什么需要Pop
 从第一代iPhone开始，iOS系统在对静态动画(static animations)方面的支持就很出色。苹果提供的Core Animation framework，使我们很方便的使用线性动画(linear)、淡入效果(ease-in)、淡出效果(ease-out)等动画。
 ![动画效果解释图](../album/animations.png)
@@ -23,6 +24,7 @@ tages:
 > <span class="secondary radius label">译者注</span> 如果你使用过Paper，你就会非常明白作者表达的是什么意思，强烈建议你用用看。我们现在的应用普遍都会存在一个问题，那就是在不同的页面直接进行切换，我们可能不会觉着我们通常的页面推入(push)、页面推出(pop)操作有什么不妥，但是作者却意识到了这些操作的生硬，他们在寻求一种更优雅、更顺滑的解决方案。Paper就是他们这种更优雅的解决方案的集中体现。
 
 Pop就是这种理念的最新表现，它使你可以使用你熟悉而且强大的Core Animation进行编程，并且它能够捕获手势操作的速度，更好的反应用户的意图。Paper给我们了一个重新定义这种理念和其背后的动画引擎的机会。
+
 
 ##目标
 Pop在三个不同的纬度提供了相应的工具。第一，我们想使一些常见动画的在使用上更加的简单便利。除了iOS内建的4种静态动画(static animations)，Pop增加三种原始的动画类型：弹簧效果(spring)， 衰变效果(decay)和自定义效果(custom)。
@@ -45,6 +47,7 @@ Pop在三个不同的纬度提供了相应的工具。第一，我们想使一�
 
 如果你会使用Core Animation构建动画，那么你也会用Pop，它们在使用上是相同的。
 
-##Open Source
+
+##开源
 Pop是我们最新开源的代码项目，除此之外，我们开源的还有KVOController, Shimmer, 和 Tweak。我们非常期待你的反馈和贡献。
 你可以在[这里](https://github.com/facebook/pop)查看Pop的整个源码工程。
