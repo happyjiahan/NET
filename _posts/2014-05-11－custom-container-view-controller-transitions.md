@@ -142,11 +142,11 @@ The Xcode project, in its three stages, is put in a [repository on GitHub](https
 
 The central class in our app is `ContainerViewController`, which hosts an array of `UIViewController` instances -- in our case, trivial `ChildViewController` objects. The container view controller sets up a private subview with tappable icons representing each child view controller:
 
-![Stage 1: no animation]({{site.images_path}}/issue-12/2014-05-01-custom-container-view-controller-transitions-stage-1.gif)
+![Stage 1: no animation](../album/2014-05-01-custom-container-view-controller-transitions-stage-1.gif)
 
 我们应用中的核心类是`ContainerViewController`，它持有一个`UIViewController`实例的数组，每个实例代表一个`ChildViewController`。当点击代表子视图控制器(child view controller)的图标时，容器视图控制器会创建一个子视图(subview):
 
-![Stage 1: no animation]({{site.images_path}}/issue-12/2014-05-01-custom-container-view-controller-transitions-stage-1.gif)
+![Stage 1: no animation](../album/2014-05-01-custom-container-view-controller-transitions-stage-1.gif)
 
 
 To switch between child view controllers, tap the icons. At this stage, there is no transition animation when switching child view controllers.
@@ -312,11 +312,11 @@ Most of this is the required container view controller song and dance, and findi
 
 With that, the transition now looks like this:
 
-![Stage 2: third-party animation]({{site.images_path}}/issue-12/2014-05-01-custom-container-view-controller-transitions-stage-2.gif)
+![Stage 2: third-party animation](../album/2014-05-01-custom-container-view-controller-transitions-stage-2.gif)
 
 有了上面的代码，转场效果看起来如下图所示:
 
-![Stage 2: third-party animation]({{site.images_path}}/issue-12/2014-05-01-custom-container-view-controller-transitions-stage-2.gif)
+![Stage 2: third-party animation](../album/2014-05-01-custom-container-view-controller-transitions-stage-2.gif)
 
 
 Pretty cool. We haven’t even written any animation code ourselves!
@@ -490,11 +490,11 @@ Note that even if the view frames haven’t been set to reflect the positional r
 
 The transition animation now looks like this:
 
-![Stage 3: third-party animation]({{site.images_path}}/issue-12/2014-05-01-custom-container-view-controller-transitions-stage-3.gif)
+![Stage 3: third-party animation](../album/2014-05-01-custom-container-view-controller-transitions-stage-3.gif)
 
 转场动画现在看起来如下所示:
 
-![Stage 3: third-party animation]({{site.images_path}}/issue-12/2014-05-01-custom-container-view-controller-transitions-stage-3.gif)
+![Stage 3: third-party animation](../album/2014-05-01-custom-container-view-controller-transitions-stage-3.gif)
 
 
 In the code with the [stage-3](https://github.com/objcio/issue-12-custom-container-transitions/tree/stage-3) tag, setting the delegate in the app delegate has been [commented out](https://github.com/objcio/issue-12-custom-container-transitions/blob/stage-3/Container%20Transitions/AppDelegate.m#L41) in order to see the default animation in action. Set it back in to use `Animator` again. You may want to check out the [full diff against stage-2](https://github.com/objcio/issue-12-custom-container-transitions/compare/stage-2...stage-3).
