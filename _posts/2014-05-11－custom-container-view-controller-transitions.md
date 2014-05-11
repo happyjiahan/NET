@@ -1,11 +1,13 @@
 ---
-layout: post
-title:  "Custom Container View Controller Transitions"
-category: "12"
-date: "2014-05-08 09:00:00"
-tags: article
-author: "<a href=\"https://twitter.com/osteslag\">Joachim Bondo</a>"
+layout: 	post
+title:		自定义容器视图控制器转场
+category:	iOS
+tages:		
+
 ---
+
+翻译自[Custom Container View Controller Transitions](http://www.objc.io/issue-12/custom-container-view-controller-transitions.html)
+
 
 In [issue #5](http://www.objc.io/issue-5/index.html), [Chris Eidhof](http://twitter.com/chriseidhof) took us through the new custom [View Controller Transitions](http://www.objc.io/issue-5/view-controller-transitions.html) in iOS 7. He [concluded](http://www.objc.io/issue-5/view-controller-transitions.html#conclusion) (emphasis mine):
 
