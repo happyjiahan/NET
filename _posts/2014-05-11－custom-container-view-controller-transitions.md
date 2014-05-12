@@ -1,3 +1,12 @@
+---
+layout: 	post
+title:		自定义 ViewController 容器转场
+category:	iOS
+tages:		
+
+---
+
+
 在[话题 #5](http://objccn.io/issue-5/) 中，[Chris Eidhof](http://twitter.com/chriseidhof) 向我们介绍了 iOS7 引入的新特性自定义 [View Controller 转场](http://objccn.io/issue-5-3). 他给出了一个 [结论](http://objccn.io/issue-5-3/#conclusion)：
 
 > 我们在本文只探讨了在 navigation controller 中的两个 view controller 之间的转场动画，但是这些做法在 tab bar controller 或者**任何你自己定义的 view controller 容器**中**也是通用的**… 
