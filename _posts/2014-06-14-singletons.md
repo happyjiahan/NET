@@ -5,7 +5,7 @@ category: iOS
 
 ---
 
-翻译自[Avoiding Singleton Abuse](http://www.objc.io/issue-13/singletons.html)，感谢原作者[Stephen Poletto](https://twitter.com/stephenpoletto)的精彩文章。
+翻译自[Avoiding Singleton Abuse](http://www.objc.io/issue-13/singletons.html)，感谢原作者[Stephen Poletto]('https://twitter.com/stephenpoletto')的精彩文章。
 
 
 单例是整个Cocoa中被广泛使用的核心设计模式之一。事实上，苹果开发者库把单例作为"Cocoa核心竞争力"之一。作为一个iOS开发者，我们经常和单例打交道，比如`UIApplication`和`NSFileManager`等等。我们在开源项目、苹果示例代码和StackOverflow中见过了无数使用单例的例子。Xcode 甚至有一个默认的 "Dispatch Once" 代码片段(code snippet)，可以使我们异常简单在代码中添加一个单例：
