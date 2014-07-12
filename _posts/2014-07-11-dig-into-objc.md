@@ -187,10 +187,12 @@ tages:
 
 感兴趣的同学可以研究下[clang](http://clang.llvm.org/)的源码，是用C++实现的，objc 的语言层就是用它来生成的，在clang/lib/CodeGen目录下有关于objc代码生成相关的代码，关于`self`到底是什么，我觉着可以从`LoadObjCSelf`这个函数入手去研究一下。
 
+**总结：**本篇文章只是从我们经常用到的一些函数的源码出发，引出了对 objc 对象模型的一些思考，但是，并没有解释的非常清楚。我也是初次接触这块的东西，我会继续把我学习的一些心得体会记录下来，欢迎大家指正与讨论。下一篇文章我希望继续把 objc meta class 相关的内容与大家一起分享。
+
 是不是觉着还不过瘾？那么请看看下面这些大牛的文章吧。
 
 +	[The Objective-C object model](http://www.devalot.com/articles/2011/11/objc-object-model.html)
 
 +	[Objective-C对象模型及应用](http://blog.devtang.com/blog/2013/10/15/objective-c-object-model/)
 
-
++ 	[What is a meta-class in Objective-C?](http://www.cocoawithlove.com/2010/01/what-is-meta-class-in-objective-c.html)
