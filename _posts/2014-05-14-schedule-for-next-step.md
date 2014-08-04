@@ -171,4 +171,12 @@ tages:
 	1.	提交Avoid Spikes更新，并处理微信和Everyplay视频分享推广相关的事情。
 	2.	继续实现GameBox的基本功能，尝试使用WaxPatch技术热更新。
 	3.	写一篇关于Wax的博客。
+	
+###第十二周工作总结(2014-7-27到2014-8-2)
+	1.	成功提交Avoid Spikes更新，正在等待审核。
+	2.	系统学习了OAuth1.0技术，并封装实现了odesk的api sdk，并在odesker中集成使用WaxPatch技术热更新。
+	3.	写一篇关于WaxPatch Pod库制作的博客。
 
+###第十三周工作计划(2014-8-3到2014-8-9)
+	1.	继续实现odesker，争取实现一个基本可用的demo。
+	2.	写一篇关于OAuth1.0的博客。
