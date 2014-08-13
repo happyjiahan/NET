@@ -99,124 +99,131 @@ Third possible type of failure, escalation level: ‘You’re fired.’ 你想�
 
 	@end
 
-These are all messages that another object can send to STKMenuViewController. Therefore, other objects can set the child view controllers and can select one of those view controllers from the list. They can also toggle the menu view itself – which is a class we’ll write later. We leave the menuView itself as a readonly property just in case someone wants to look at the values of the menuView, but really, we don’t want them changing properties of it so we leave a note there.
+这些都是STKMenuViewController暴露给其他对象调用的接口。因此，其他对象可以设置 child view controllers、从这些 view controllers 中选中一个。也可以切换menu view 本身，这个类我们稍后在实现它。我们声明 menuView 为只读的，我们只希望其他对象可以读取menuView 的值，但是不希望去更改它们。
 
-Internally, the STKMenuViewController will have two properties that it doesn’t expose to the outside world because it wants firm control over them. Therefore, in the implementation file, the class extension will look like so:
+在内部实现时，STKMenuViewController有另外两个属性，但是我们不想把它们暴露给外部。因为我们想严格的控制它们。因此在实现文件中，代码如下：
 
-@interface STKMenuViewController ()
+	@interface STKMenuViewController ()
 
-@property (nonatomic, weak) UIView *transitionView;
-@property (nonatomic, weak) UIViewController *selectedViewController;
+	@property (nonatomic, weak) UIView *transitionView;
+	@property (nonatomic, weak) UIViewController *selectedViewController;
 
-@end
-The loadView method of STKMenuViewController will be responsible for setting up the view hierarchy. (We’ll implement STKMenuView later.) It looks like this:
+	@end
+	
+STKMenuViewController 的 loadView 方法负责生成视图结构，它看起来如下所示（我们稍后在实现STKMenuView）：
 
-- (void)loadView
-{
-    UIView *layoutView = [[UIView alloc] init];
+	- (void)loadView
+	{
+	    UIView *layoutView = [[UIView alloc] init];
 
-    UIView *transitionView = [[UIView alloc] initWithFrame:[layoutView bounds]];
-    [transitionView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
-    [layoutView addSubview:transitionView];
+	    UIView *transitionView = [[UIView alloc] initWithFrame:[layoutView bounds]];
+	    [transitionView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
+	    [layoutView addSubview:transitionView];
 
-    STKMenuView *menuView = [[STKMenuView alloc] initWithFrame:[layoutView bounds]];
-    [menuView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    [menuView setDelegate:self];
-    [layoutView addSubview:menuView];
+	    STKMenuView *menuView = [[STKMenuView alloc] initWithFrame:[layoutView bounds]];
+	    [menuView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	    [menuView setDelegate:self];
+	    [layoutView addSubview:menuView];
 
-    [self setView:layoutView];
-    [self setTransitionView:transitionView];
-    _menuView = menuView;
+	    [self setView:layoutView];
+	    [self setTransitionView:transitionView];
+	    _menuView = menuView;
 
-    [self setMenuVisible:NO animated:NO];
-}
-This should all be straightforward. Notice we hang onto the two views we will need to access later: the transition view and the menu view.
+	    [self setMenuVisible:NO animated:NO];
+	}
+	
+代码很直白，我们持有了我们需要稍后使用的两个 view：transition view 和 menu view。
 
-A container view controller works just like a normal view controller: its view isn’t loaded until it is needed and it is sent appearance and rotation messages. This means we have to do two things. First, we need to establish the parent-child relationship between these view controllers to ensure appearance and rotation messages are automatically sent to the children when necessary.
+container view controller 和普通的 view controller 一样，它的 view 也是延迟加载的，直到在需要时才会去加载，或者被调用了 appearance 和 rotation 方法。这意味着我们需要做两件事情。首先，我们需要为这些 view controllers 建立 parent-child 关系，以保证 appearance 和 rotation 消息可以被自动的发送给 children。
 
-Therefore, setViewControllers: looks like this:
+因此, setViewControllers: 如下所示：
 
-- (void)setViewControllers:(NSArray *)viewControllers
-{
-    for(UIViewController *vc in [self viewControllers]) {
-        [vc willMoveToParentViewController:nil];
-        if([vc isViewLoaded] 
-        && [[vc view] superview] == [self transitionView]) {
-            [[vc view] removeFromSuperview];
-        }
-        [vc removeFromParentViewController];
-    }
+	- (void)setViewControllers:(NSArray *)viewControllers
+	{
+	    for(UIViewController *vc in [self viewControllers]) {
+	        [vc willMoveToParentViewController:nil];
+	        if([vc isViewLoaded] 
+	        && [[vc view] superview] == [self transitionView]) {
+	            [[vc view] removeFromSuperview];
+	        }
+	        [vc removeFromParentViewController];
+	    }
 
-    _viewControllers = viewControllers;
+	    _viewControllers = viewControllers;
 
-    for(UIViewController *vc in [self viewControllers]) {
-        [self addChildViewController:vc];
-        [vc didMoveToParentViewController:self];
-    }
+	    for(UIViewController *vc in [self viewControllers]) {
+	        [self addChildViewController:vc];
+	        [vc didMoveToParentViewController:self];
+	    }
 
-    if([_viewControllers count] > 0) {
-        [self setSelectedViewController:[_viewControllers objectAtIndex:0]];
-    } else {
-        [self setSelectedViewController:nil];
-    }
-}
-Notice, first, that if the STKMenuViewController already has children, it dissolves the parent-child relationship between those view controllers and removes the view of the selected view controller from its hierarchy. When removing a child view controller, you must manually send willMoveToParentViewController: to the child and pass nil before removing it.
+	    if([_viewControllers count] > 0) {
+	        [self setSelectedViewController:[_viewControllers objectAtIndex:0]];
+	    } else {
+	        [self setSelectedViewController:nil];
+	    }
+	}
+	
+需要注意，如果STKMenuViewController已经有了 children 了，它需要首先把和这些 view controllers 的 parent-child 关系解除，然后再把 selected view controller 的 view 从它的视图结构中移除掉。当移除一个 child view controller 之前，你需要手动调用willMoveToParentViewController:, 并把 nil 作为参数传递进去。
 
 The reverse is true when adding the new children to the parent, they are first added and then manually send didMoveToParentViewController:. Once the children have established their relationship with the parent, the first view controller in the array is automatically selected. (But honestly, I have to look up which one has to be manually called in the documentation each time, so as long as you remember that you have to do something, you’ll be good.)
 
 Note that there is no code for managing the view hierarchy here. That process is handled in setSelectedViewController:. The role of setViewControllers: is to establish parent-child relationships. The role of setSelectedViewController: is to manage the view hierarchy. This method gives the menu controller a uniform way of swapping between view controllers on their views, since we will do this from multiple places. It also helps us with the issue of not knowing whether or not the menu view controller has loaded its view.
 
-- (void)setSelectedViewController:(UIViewController *)selectedViewController
-{
-    if(![[self viewControllers] containsObject:selectedViewController]) {
-        return;
-    }
+	- (void)setSelectedViewController:(UIViewController *)selectedViewController
+	{
+	    if(![[self viewControllers] containsObject:selectedViewController]) {
+	        return;
+	    }
 
-    UIViewController *previous = [self selectedViewController];
+	    UIViewController *previous = [self selectedViewController];
 
-    _selectedViewController = selectedViewController;
+	    _selectedViewController = selectedViewController;
 
-    if([self isViewLoaded]) {
-        [[previous view] removeFromSuperview];
+	    if([self isViewLoaded]) {
+	        [[previous view] removeFromSuperview];
 
-        UIView *newView = [[self selectedViewController] view];
-        [newView setFrame:[[self transitionView] bounds]];
-        [newView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
-        [[self transitionView] addSubview:newView];
-    }
-}
+	        UIView *newView = [[self selectedViewController] view];
+	        [newView setFrame:[[self transitionView] bounds]];
+	        [newView setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
+	        [[self transitionView] addSubview:newView];
+	    }
+	}
 This method ensures that the view controller it is selecting is actually one of its children – which is unlikely, since setSelectedViewController: is not exposed to the public, but might as well check. Then, if and only if the menu view controller’s view has been loaded, the views are swapped. Notice we’re adding the selected view controller’s view to the transitionView based on our earlier conversation about separating roles.
 
 Since setViewControllers: and therefore setSelectedViewController: can be called before the menu view controller has loaded its view, it is possible that the selected view won’t appear once the view is loaded. For that reason, we must call setSelectedViewController: again in viewDidLoad.
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+	- (void)viewDidLoad
+	{
+	    [super viewDidLoad];
 
-    [self setSelectedViewController:[self selectedViewController]];
-}
+	    [self setSelectedViewController:[self selectedViewController]];
+	}
+
 Once setSelectedViewController: runs again, the instance variable _selectedViewController won’t change, but its view will now be in the menu view controller’s view hierarchy.
 
 The final property to implement before we move into the next article (where we will implement the menu view) is selectedViewControllerIndex. This comes with a valuable lesson. We have a selectedViewController property – a pointer to the selected view controller – and the array of all the view controllers. Instead of storing the index as an integer value and keeping selectedViewController and selectedViewControllerIndex in sync, we will derive selectedViewControllerIndex from the information we already have.
 
-- (int)selectedViewControllerIndex
-{
-    return (int)[[self viewControllers] indexOfObject:[self selectedViewController]];
-}
+	- (int)selectedViewControllerIndex
+	{
+	    return (int)[[self viewControllers] indexOfObject:[self selectedViewController]];
+	}
+	
 The value to this approach is that we don’t open up ourselves to the error of the index and the selected view controller becoming out of sync. The setter method for this property then forwards the actual work of selecting a view controller onto our one-stop shop, setSelectedViewController:, after performing some bounds checking:
 
-- (void)setSelectedViewControllerIndex:(int)selectedViewControllerIndex
-{
-    if(selectedViewControllerIndex < 0
-    || selectedViewControllerIndex >= [[self viewControllers] count]
-    || selectedViewControllerIndex == [self selectedViewControllerIndex])
-        return;
+	- (void)setSelectedViewControllerIndex:(int)selectedViewControllerIndex
+	{
+	    if(selectedViewControllerIndex < 0
+	    || selectedViewControllerIndex >= [[self viewControllers] count]
+	    || selectedViewControllerIndex == [self selectedViewControllerIndex])
+	        return;
 
-    [self setSelectedViewController:[[self viewControllers] objectAtIndex:selectedViewControllerIndex]];
-}
+	    [self setSelectedViewController:[[self viewControllers] objectAtIndex:selectedViewControllerIndex]];
+	}
+	
 Since we don’t have an instance variable for selectedViewControllerIndex, you can go ahead and make it dynamic in the implementation block:
 
-@dynamic selectedViewControllerIndex;
+	@dynamic selectedViewControllerIndex;
+	
 In the next article, we’ll implement STKMenuView and hook it up to a gesture recognizer. This will allow the user to swap between view controllers.
 
 
