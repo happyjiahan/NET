@@ -3,8 +3,8 @@ layout: 	post
 title:		如何实现一个View Controller Containers: Part I
 category:	iOS
 tages:		
----
 
+---
 
 本文翻译自[View Controller Containers: Part I](http://stablekernel.com/blog/view-controller-containers-part-i/)，感谢原作者的精彩文章。
 
