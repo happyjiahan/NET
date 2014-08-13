@@ -188,6 +188,7 @@ Note that there is no code for managing the view hierarchy here. That process is
 	        [[self transitionView] addSubview:newView];
 	    }
 	}
+	
 This method ensures that the view controller it is selecting is actually one of its children – which is unlikely, since setSelectedViewController: is not exposed to the public, but might as well check. Then, if and only if the menu view controller’s view has been loaded, the views are swapped. Notice we’re adding the selected view controller’s view to the transitionView based on our earlier conversation about separating roles.
 
 Since setViewControllers: and therefore setSelectedViewController: can be called before the menu view controller has loaded its view, it is possible that the selected view won’t appear once the view is loaded. For that reason, we must call setSelectedViewController: again in viewDidLoad.
