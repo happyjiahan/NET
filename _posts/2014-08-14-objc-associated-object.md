@@ -67,7 +67,7 @@ objc_setAssociatedObject 就是把一个对象关联到另外一个对象上去�
 
 参考文章：
 	
-+	[http://nshipster.cn/associated-objects/](http://nshipster.cn/associated-objects/)
++	[Associated Objects](http://nshipster.cn/associated-objects/)
 +	[理解 Objective-C Runtime](http://www.justinyan.me/post/1624)
 
 
