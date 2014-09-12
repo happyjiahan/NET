@@ -28,7 +28,7 @@ name 和 desc 分别是英文版对应的字段，现在我想实现中文版，
 	1.	继承PowerupDetail，实现子类PowerupDetailCN和PowerupDetailEN在所有调用PowerupDetail的地方，区分出到底应该调用PowerupDetailCN还是PowerupDetailEN。
 	2.	把PowerupDetail做成类簇，对外暴露通用接口，对内转调给内部类来实现具体逻辑。
 
-方案1是最容易想到的，但是它的确定是需要对已有的调用代码进行修改，而且如果将来随着越来越多的语言被支持，这些类将会非常多，在调用的地方需要一堆的if-else语句来区分，代码很丑，工作量很大。
+方案1是最容易想到的，但是它的缺点是需要对已有的调用代码进行修改，而且如果将来随着越来越多的语言被支持，这些类将会非常多，在调用的地方需要一堆的if-else语句来区分，代码很丑，工作量很大。
 
 方案2是比较好的一种方案，做到了对外暴露最小化，而所有调用的地方都可以不用修改，所有的修改可以只在PowerupDetail这个类中即可完成。
 
@@ -122,8 +122,10 @@ name 和 desc 分别是英文版对应的字段，现在我想实现中文版，
 
 	@end
 
-这里，我实现了两个内部类`_PowerUpDetailCH`和`_PowerUpDetailEN`，他们都继承于`PowerUpDetail`，而`PowerUpDetail`暴露给外边两个方法：		
+这里，我实现了两个内部类`_PowerUpDetailCH`和`_PowerUpDetailEN`，他们都继承于`PowerUpDetail`，而`PowerUpDetail`暴露给外边两个方法：
+		
 		- (NSString *)localizedName;
+
 		- (NSString *)localizedDesc;
 
 这些方法可以在子类中按需要进行复写。
