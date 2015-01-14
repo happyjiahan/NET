@@ -100,8 +100,6 @@ tages:		ios开发
 
 - (void)setSelected:(BOOL)selected
 {
-    DDLogVerbose(@"selected = %d", selected);
-    
     // Do original Selected
     [super setSelected:selected];
     
