@@ -30,6 +30,8 @@ tages:		ios开发
 
 ```
 
+具体实现如下所示，代码很简单，不再赘述：
+
 
 ```
 @implementation WMButton
