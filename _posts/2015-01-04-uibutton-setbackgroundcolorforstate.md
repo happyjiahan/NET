@@ -128,6 +128,7 @@ tages:		ios开发
 
 
 使用时，如下调用即可：
+
 ```
 [button setBackgroundColor:[UIColor clearColor] forState:UIControlStateNormal];
 [button setBackgroundColor:[UIColor clearColor] forState:UIControlStateHighlighted];
