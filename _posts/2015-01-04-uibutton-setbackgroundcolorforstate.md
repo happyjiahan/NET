@@ -1,6 +1,6 @@
 ---
 layout: 	post
-title:		UIButton setBackgroundColor:ForState）
+title:		UIButton setBackgroundColor:ForState
 category:	ios开发
 tages:		ios开发
 
