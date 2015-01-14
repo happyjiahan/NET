@@ -7,6 +7,7 @@
 - (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state UI_APPEARANCE_SELECTOR; // default is nil
 
 - (UIImage *)backgroundImageForState:(UIControlState)state;
+
 ```
 
 类似的，我们y
