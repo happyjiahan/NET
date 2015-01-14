@@ -15,6 +15,6 @@
 ```
 - (void)setBackgroundColor:(UIColor *)color forState:(UIControlState)state;
 
-- (UIImage *)backgroundImageForState:(UIControlState)state;
+- (UIColor *)backgroundColorForState:(UIControlState)state;
 
 ```
