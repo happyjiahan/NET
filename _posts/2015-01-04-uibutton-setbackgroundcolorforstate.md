@@ -126,6 +126,7 @@ tages:		ios开发
 
 ```
 
+
 使用时，如下调用即可：
 ```
 [button setBackgroundColor:[UIColor clearColor] forState:UIControlStateNormal];
@@ -133,6 +134,7 @@ tages:		ios开发
 [button setBackgroundColor:HotPinkColor forState:UIControlStateSelected];
         
 ```
+
 
 需要注意的一点是，有些人可能会这样使用
 
