@@ -70,6 +70,11 @@ tages:		ios开发
     [_colors setValue:backgroundColor forKey:[self keyForState:state]];
 }
 
+- (UIColor *)backgroundColorForState:(UIControlState)state
+{
+    return [_colors valueForKey:[self keyForState:state]];
+}
+
 - (void)setHighlighted:(BOOL)highlighted
 {
     DDLogVerbose(@"highlighted = %d", highlighted);
