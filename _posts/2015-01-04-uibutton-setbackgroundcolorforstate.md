@@ -147,5 +147,5 @@ tages:		ios开发
 这种用法是不被支持的，虽然可以实现，但是，其实对于iOS默认提供方法`- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state UI_APPEARANCE_SELECTOR; // default is nil`这种位于的用法也是不被完全支持的，大家可以试试看。
 
 
-下面我们再来详细讨论下`UIButton`切换state的顺序问题。
+下面我们再来详细讨论下`UIButton`切换state的顺序问题。当`UIButton`被按下时，会启动一个计时器，每隔一段时间，都会去检测按钮是否还处在被按下的状态。如果系统检测到它还处于被按下的状态，则就会切换到`UIControlStateHighlighted`，否则，恢复到`UIControlStateNormal`。
 
