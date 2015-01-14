@@ -10,4 +10,11 @@
 
 ```
 
-类似的，我们y
+类似的，我们的函数实现声明如下：
+
+```
+- (void)setBackgroundColor:(UIColor *)color forState:(UIControlState)state;
+
+- (UIImage *)backgroundImageForState:(UIControlState)state;
+
+```
