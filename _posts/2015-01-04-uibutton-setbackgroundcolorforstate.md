@@ -129,7 +129,9 @@ tages:		ios开发
         
 ```
 
+需要注意的一点是，有些人可能会这样使用
+
+[button setBackgroundColor:HotPinkColor forState:UIControlStateHighlighted | UIControlStateSelected];
 
 
-需要注意的一点是，
 
