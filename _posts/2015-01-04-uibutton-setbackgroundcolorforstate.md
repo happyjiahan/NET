@@ -78,8 +78,6 @@ tages:		ios开发
 
 - (void)setHighlighted:(BOOL)highlighted
 {
-    DDLogVerbose(@"highlighted = %d", highlighted);
-    
     // Do original Highlight
     [super setHighlighted:highlighted];
     
