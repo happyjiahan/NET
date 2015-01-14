@@ -136,7 +136,7 @@ tages:		ios开发
 
 ```
 
-这种用法是不被支持的，虽然可以实现，但是，其实对于iOS默认提供方法`- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state UI_APPEARANCE_SELECTOR; // default is nil`这种位于的用法也是不被支持的。
+这种用法是不被支持的，虽然可以实现，但是，其实对于iOS默认提供方法`- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state UI_APPEARANCE_SELECTOR; // default is nil`这种位于的用法也是不被支持的，大家可以试试看。
 
 
 
