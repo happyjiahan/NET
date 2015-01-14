@@ -39,6 +39,8 @@ tages:		ios开发
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
 
+- (UIColor *)backgroundColorForState:(UIControlState)state;
+
 @end
 
 ```
