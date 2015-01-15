@@ -151,7 +151,9 @@ tages:		ios开发
 
 当`UIButton`被按下时，会启动一个计时器，每隔一段时间，都会去检测按钮是否还处在被按下的状态。如果系统检测到它还处于被按下的状态，则就会切换到`UIControlStateHighlighted`，否则，恢复到`UIControlStateNormal`。当你长按后，在当前按钮的区域抬起手时，会切换到`UIControlStateSelected`，但是，需要注意的是，这次切换不仅会触发`setSelected:`被调用，也会触发`setHighlighted:`的一次调用。大家可以看看下面打印出来的Log。
 
+
 ```
+
 2015-01-08 19:43:58.782  V |: highlighted = 1 @ WMButton(#38).-[WMButton setHighlighted:] 
 
 2015-01-08 19:44:00.227  V |: highlighted = 1 @ WMButton(#38).-[WMButton setHighlighted:] 
